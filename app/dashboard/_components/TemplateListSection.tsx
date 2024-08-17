@@ -1,46 +1,45 @@
-import Templates from '@/app/(data)/Templates';
-import React, { useEffect, useState } from 'react'
-import TemplateCard from './TemplateCard';
+import Templates from "@/app/(data)/Templates";
+import React, { useEffect, useState } from "react";
+import TemplateCard from "./TemplateCard";
 
 export interface TEMPLATE {
-    name: string,
-    description: string,
-    icon: string,
-    category: string,
-    slug: string,
-    aiPrompt: string,
-    form?: FORM[]
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  slug: string;
+  aiPrompt: string;
+  form?: FORM[];
 }
 
 export interface FORM {
-    label: string,
-    field: string,
-    name: string,
-    required?: boolean
+  label: string;
+  field: string;
+  name: string;
+  required?: boolean;
 }
 
-function TemplateListSection({searchInput}: any) {
+function TemplateListSection({ searchInput }: any) {
+  const [templateList, setTemplateList] = useState<TEMPLATE[]>(Templates);
 
-    const [templateList, setTemplateList] = useState<TEMPLATE[]>(Templates)
-
-    useEffect(() => {
-        if(searchInput) {
-            const filteredTemplates = Templates.filter((template: TEMPLATE) =>
-                template.name.toLowerCase().includes(searchInput.toLowerCase())
-        );
-        setTemplateList(filteredTemplates);
-        } else {
-            setTemplateList(Templates);
-        }
-    }, [searchInput])
+  useEffect(() => {
+    if (searchInput) {
+      const filteredTemplates = Templates.filter((template: TEMPLATE) =>
+        template.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setTemplateList(filteredTemplates);
+    } else {
+      setTemplateList(Templates);
+    }
+  }, [searchInput]);
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10'>
-        {templateList.map((item: TEMPLATE, index: number) => (
-            <TemplateCard key={index} {...item} />
-        ))}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10">
+      {templateList.map((item: TEMPLATE, index: number) => (
+        <TemplateCard key={index} {...item} />
+      ))}
     </div>
-  )
+  );
 }
 
 export default TemplateListSection;

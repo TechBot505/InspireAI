@@ -32,7 +32,7 @@ function SideNav() {
   ];
 
   return (
-    <div className="h-screen p-5 shadow-sm border">
+    <div className="h-screen p-5 shadow-sm border bg-white">
       <div className="flex justify-center gap-1 items-center">
         <Image width={42} height={42} alt="logo" src={"/logo.png"} />
         <span className="font-bold text-xl">Inspire AI</span>

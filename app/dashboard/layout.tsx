@@ -1,23 +1,23 @@
-import React from 'react'
-import SideNav from './_components/SideNav';
-import Header from './_components/Header';
+import React from "react";
+import SideNav from "./_components/SideNav";
+import Header from "./_components/Header";
 
 function DashboardLayout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div>
-        <div className='md:w-64 hidden md:block fixed'>
-            <SideNav />
-        </div>
-        <div className='md:ml-64'>
-            <Header />
-            {children}
-        </div>
+    <div className="h-screen bg-slate-100">
+      <div className="md:w-64 hidden md:block fixed">
+        <SideNav />
+      </div>
+      <div className="md:ml-64">
+        <Header />
+        {children}
+      </div>
     </div>
-  )
+  );
 }
 
 export default DashboardLayout;

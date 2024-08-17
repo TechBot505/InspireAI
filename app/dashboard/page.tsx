@@ -1,16 +1,16 @@
-"use client"
-import React, { useState } from 'react'
-import SearchSection from './_components/SearchSection'
-import TemplateListSection from './_components/TemplateListSection'
+"use client";
+import React, { useState } from "react";
+import SearchSection from "./_components/SearchSection";
+import TemplateListSection from "./_components/TemplateListSection";
 
 function Dashboard() {
-  const [searchInput, setSearchInput] = useState<string>('')
+  const [searchInput, setSearchInput] = useState<string>("");
   return (
     <div>
-      <SearchSection onSearchInput={(value:string) => setSearchInput(value)} />
+      <SearchSection onSearchInput={(value: string) => setSearchInput(value)} />
       <TemplateListSection searchInput={searchInput} />
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;
