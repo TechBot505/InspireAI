@@ -1,22 +1,25 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { TEMPLATE } from "../../_components/TemplateListSection";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Loader2Icon } from "lucide-react";
 
 interface PROPS {
   selectedTemplate?: TEMPLATE;
   userFormInput: (formData: any) => void;
+  loading: boolean;
 }
 
-function FormSection({ selectedTemplate, userFormInput }: PROPS) {
+function FormSection({ selectedTemplate, userFormInput, loading }: PROPS) {
   const [formData, setFormData] = useState<any>();
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
     userFormInput(formData);
+    // setFormData("");
   };
 
   const handleInputChange = (e: any) => {
@@ -39,7 +42,7 @@ function FormSection({ selectedTemplate, userFormInput }: PROPS) {
       <p className="text-gray-500 text-sm">{selectedTemplate?.description}</p>
       <form className="mt-4" onSubmit={handleFormSubmit}>
         {selectedTemplate?.form?.map((item, index) => (
-          <div className="my-2 flex flex-col gap-2 mb-7">
+          <div key={index} className="my-2 flex flex-col gap-2 mb-7">
             <label className="font-bold">{item.label}</label>
             {item.field === "input" ? (
               <Input
@@ -56,7 +59,8 @@ function FormSection({ selectedTemplate, userFormInput }: PROPS) {
             ) : null}
           </div>
         ))}
-        <Button type="submit" className="w-full py-6 text-lg">
+        <Button type="submit" className="w-full py-6 text-lg flex gap-2" disabled={loading}>
+          {loading && <Loader2Icon width={32} className="animate-spin" />}
           Generate
         </Button>
       </form>
