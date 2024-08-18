@@ -29,13 +29,15 @@ function FormSection({ selectedTemplate, userFormInput }: PROPS) {
 
   return (
     <div className="p-5 shadow-md border rounded-lg bg-white">
-      {/* @ts-ignore */}
-      <Image src={selectedTemplate?.icon} alt="icon" width={70} height={70} />
-      <h2 className="font-bold text-2xl mb-2 text-primary">
-        {selectedTemplate?.name}
-      </h2>
+      <div className="flex flex-row items-center gap-4 mb-2">
+        {/* @ts-ignore */}
+        <Image src={selectedTemplate?.icon} alt="icon" width={60} height={60} />
+        <h2 className="font-bold text-2xl text-primary">
+          {selectedTemplate?.name}
+        </h2>
+      </div>
       <p className="text-gray-500 text-sm">{selectedTemplate?.description}</p>
-      <form className="mt-6" onSubmit={handleFormSubmit}>
+      <form className="mt-4" onSubmit={handleFormSubmit}>
         {selectedTemplate?.form?.map((item, index) => (
           <div className="my-2 flex flex-col gap-2 mb-7">
             <label className="font-bold">{item.label}</label>

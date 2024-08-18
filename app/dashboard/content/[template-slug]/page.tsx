@@ -24,21 +24,23 @@ function CreateNewContent(props: PROPS) {
   };
 
   return (
-    <div className="p-5 h-full bg-slate-100">
+    <div className="flex flex-col p-5 h-full bg-slate-100">
+      <div className="w-5">
       <Link href="/dashboard">
-        <Button>
+        <Button className="flex gap-2">
           <ArrowLeft />
           Back
         </Button>
       </Link>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-3 gap-10 py-5">
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 py-5">
         <FormSection
           selectedTemplate={selectedTemplate}
           userFormInput={(v: any) => {
             console.log(v);
           }}
         />
-        <div className="col-span-2">
+        <div className="md:col-span-2 lg:col-span-2">
           <OutputSection />
         </div>
       </div>

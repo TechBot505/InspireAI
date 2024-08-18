@@ -9,10 +9,10 @@ function DashboardLayout({
 }>) {
   return (
     <div className="h-screen bg-slate-100">
-      <div className="md:w-64 hidden md:block fixed">
+      <div className="lg:w-64 hidden lg:block fixed">
         <SideNav />
       </div>
-      <div className="md:ml-64">
+      <div className="lg:ml-64">
         <Header />
         {children}
       </div>
