@@ -10,7 +10,7 @@ function DashboardLayout({
 }>) {
   return (
     <TotalUsageContextProvider>
-    <div className="h-screen bg-slate-100">
+    <div className="h-full bg-slate-100">
       <div className="lg:w-64 hidden lg:block fixed">
         <SideNav />
       </div>
