@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TEMPLATE } from "../../_components/TemplateListSection";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";

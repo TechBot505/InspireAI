@@ -33,9 +33,9 @@ function SideNav() {
       path: "/dashboard/billing",
     },
     {
-      title: "Setting",
+      title: "Settings",
       icon: Settings,
-      path: "/dashboard/setting",
+      path: "/dashboard/settings",
     },
   ];
 

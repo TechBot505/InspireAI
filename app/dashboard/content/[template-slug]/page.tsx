@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormSection from "../_components/FormSection";
 import OutputSection from "../_components/OutputSection";
 import { TEMPLATE } from "../../_components/TemplateListSection";
@@ -12,6 +12,8 @@ import { db } from "@/utils/DB";
 import { AIOutput } from "@/utils/Schema";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
+import { TotalUsageContext } from "../../../(context)/TotalUsageContext";
+import { useRouter } from "next/navigation";
 
 interface PROPS {
   params: {
@@ -22,24 +24,34 @@ interface PROPS {
 function CreateNewContent(props: PROPS) {
   const [loading, setLoading] = useState<boolean>(false);
   const [aiResponse, setAiResponse] = useState<string>("");
+  const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
 
-  const {user} = useUser();
+  const { user } = useUser();
+  const router = useRouter();
 
   const selectedTemplate: TEMPLATE | undefined = Templates?.find(
     (template) => template.slug === props.params["template-slug"]
   );
 
   const generateAIContent = async (formData: any) => {
+    if (totalUsage >= 10000) {
+      router.push("/dashboard/billing");
+      return;
+    }
     setLoading(true);
     const prompt = selectedTemplate?.aiPrompt;
     const finalPrompt = JSON.stringify(formData) + ", " + prompt;
     const result = await chatSession.sendMessage(finalPrompt);
     setAiResponse(result?.response.text());
-    await SaveOutput(JSON.stringify(formData), selectedTemplate?.slug, result?.response.text());
+    await SaveOutput(
+      JSON.stringify(formData),
+      selectedTemplate?.slug,
+      result?.response.text()
+    );
     setLoading(false);
   };
 
-  const SaveOutput = async (formData: any, slug: any, aiResponse:string) => {
+  const SaveOutput = async (formData: any, slug: any, aiResponse: string) => {
     const result = await db.insert(AIOutput).values({
       formData: formData,
       templateSlug: slug,
