@@ -57,7 +57,7 @@ function CreateNewContent(props: PROPS) {
       templateSlug: slug,
       aiResponse: aiResponse,
       createdBy: user?.primaryEmailAddress?.emailAddress,
-      createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+      createdAt: moment().format("YYYY-MM-DD"),
     });
 
     console.log(result);

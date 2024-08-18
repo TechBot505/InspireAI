@@ -64,7 +64,7 @@ function History() {
       {loading ? <div className="flex items-center justify-center pt-5"><Loader2Icon width={72} className="animate-spin" /></div> : history.map((item: HISTORY, index: number) => (
         <>
           <div className="grid grid-cols-7 my-5 p-3">
-            <h2 className="col-span-2 flex gap-2 items-center">
+            <h2 className="col-span-2 flex gap-3 items-center">
               <Image
                 src={String(getTemplateName(item?.templateSlug)?.icon)}
                 alt="template"

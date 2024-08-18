@@ -158,7 +158,7 @@ export default [
       "Enhance the provided text by correcting grammar, improving clarity, and refining the tone. Ensure the final text is polished and professional, formatted for rich text editors.",
     form: [
       {
-        label: "Enter text that you want to re-write or improve",
+        label: "Enter text that you want to Refactor or Improve",
         field: "textarea",
         name: "textToImprove",
       },
@@ -175,7 +175,7 @@ export default [
       "Integrate relevant and expressive emojis into the provided text. Maintain the text's original meaning while making it more engaging. Format the output for rich text editors.",
     form: [
       {
-        label: "Enter your text to add emojis",
+        label: "Enter your text to add Emojis",
         field: "textarea",
         name: "outline",
         required: true,
@@ -193,7 +193,7 @@ export default [
       "Generate 3 creative and engaging Instagram post ideas based on the provided keywords. Each post should be concise, visually appealing, and formatted for rich text editors.",
     form: [
       {
-        label: "Enter Keywords for your post",
+        label: "Enter Keywords for your Post",
         field: "input",
         name: "keywords",
         required: true,
@@ -211,7 +211,7 @@ export default [
       "Create 15 effective and trending Instagram hashtags based on the provided keywords. Ensure the hashtags are relevant and optimize them for maximum engagement, formatted for rich text editors.",
     form: [
       {
-        label: "Enter Keywords for your instagram hastag",
+        label: "Enter Keywords for your Instagram Hastag",
         field: "input",
         name: "keywords",
         required: true,
@@ -230,7 +230,7 @@ export default [
       "Generate 5-10 innovative and trending Instagram post or reel ideas based on the given niche. Incorporate the latest social media trends, and format the ideas for rich text editors.",
     form: [
       {
-        label: "Enter Keywords / Niche for your instagram idea",
+        label: "Enter Keywords/Niche for your Instagram Idea",
         field: "input",
         name: "keywords",
         required: true,
@@ -249,7 +249,7 @@ export default [
       "Correct the grammar in the provided English text, ensuring it is free of errors and flows smoothly. Present the revised text in a polished and professional manner, formatted for rich text editors.",
     form: [
       {
-        label: "Enter text to correct the grammer",
+        label: "Enter text to correct the Grammar",
         field: "input",
         name: "inputText",
         required: true,
@@ -267,7 +267,7 @@ export default [
       "Generate a well-structured and efficient code snippet based on the provided description and programming language. Include comments where necessary and format the output in a code block within a rich text editor format.",
     form: [
       {
-        label: "Enter description of code you want along with Programming Lang",
+        label: "Enter description of code you want along with Programming Language",
         field: "textarea",
         name: "codeDesscripton",
         required: true,
@@ -285,7 +285,7 @@ export default [
       "Provide a detailed line-by-line explanation of the provided code. Clarify complex logic and ensure the explanation is clear and easy to understand, formatted in a code block within a rich text editor.",
     form: [
       {
-        label: "Enter code which you want to understand",
+        label: "Enter code which you want to Understand",
         field: "textarea",
         name: "codeDesscripton",
         required: true,
@@ -304,7 +304,7 @@ export default [
       "Analyze the provided code for bugs, identify issues, and suggest effective solutions. Provide detailed explanations of the fixes, formatted in a code block within a rich text editor.",
     form: [
       {
-        label: "Enter code which you want to test bug",
+        label: "Enter code which you want to Test Bug",
         field: "textarea",
         name: "codeInput",
         required: true,
@@ -329,7 +329,7 @@ export default [
         required: true,
       },
       {
-        label: "What you are selling / Marketting",
+        label: "What you are Selling/Marketing",
         field: "textarea",
         name: "outline",
         required: true,
