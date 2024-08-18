@@ -24,7 +24,7 @@ function CreateNewContent(props: PROPS) {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 h-full bg-slate-100">
       <Link href="/dashboard">
         <Button>
           <ArrowLeft />

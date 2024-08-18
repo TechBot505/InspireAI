@@ -6,7 +6,7 @@ import TemplateListSection from "./_components/TemplateListSection";
 function Dashboard() {
   const [searchInput, setSearchInput] = useState<string>("");
   return (
-    <div>
+    <div className="h-full bg-slate-100">
       <SearchSection onSearchInput={(value: string) => setSearchInput(value)} />
       <TemplateListSection searchInput={searchInput} />
     </div>
