@@ -17,6 +17,8 @@ interface PROPS {
 
 function CreateNewContent(props: PROPS) {
   const [loading, setLoading] = useState<boolean>(false);
+  const [aiResponse, setAiResponse] = useState<string>("");
+
   const selectedTemplate: TEMPLATE | undefined = Templates?.find(
     (template) => template.slug === props.params["template-slug"]
   );
@@ -24,21 +26,21 @@ function CreateNewContent(props: PROPS) {
   const generateAIContent = async (formData: any) => {
     setLoading(true);
     const prompt = selectedTemplate?.aiPrompt;
-    const finalPrompt = JSON.stringify(formData)+', '+prompt;
+    const finalPrompt = JSON.stringify(formData) + ", " + prompt;
     const result = await chatSession.sendMessage(finalPrompt);
-    console.log(result.response.text());
+    setAiResponse(result?.response.text());
     setLoading(false);
   };
 
   return (
     <div className="flex flex-col p-5 h-full bg-slate-100">
       <div className="w-5">
-      <Link href="/dashboard">
-        <Button className="flex gap-2">
-          <ArrowLeft />
-          Back
-        </Button>
-      </Link>
+        <Link href="/dashboard">
+          <Button className="flex gap-2">
+            <ArrowLeft />
+            Back
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 py-5">
         <FormSection
@@ -46,10 +48,10 @@ function CreateNewContent(props: PROPS) {
           userFormInput={(v: any) => {
             generateAIContent(v);
           }}
-          loading = {loading}
+          loading={loading}
         />
         <div className="md:col-span-2 lg:col-span-2">
-          <OutputSection />
+          <OutputSection aiResponse={aiResponse} />
         </div>
       </div>
     </div>
