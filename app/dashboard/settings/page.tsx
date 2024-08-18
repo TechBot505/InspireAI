@@ -4,7 +4,7 @@ import React from 'react'
 function Settings() {
   return (
     <div className='flex justify-center items-center h-full p-5'>
-        <UserProfile />
+        <UserProfile routing='hash' />
     </div>
   )
 }
