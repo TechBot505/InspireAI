@@ -35,11 +35,11 @@ function CreateNewContent(props: PROPS) {
     const finalPrompt = JSON.stringify(formData) + ", " + prompt;
     const result = await chatSession.sendMessage(finalPrompt);
     setAiResponse(result?.response.text());
-    await SaveOutput(JSON.stringify(formData), selectedTemplate?.slug);
+    await SaveOutput(JSON.stringify(formData), selectedTemplate?.slug, result?.response.text());
     setLoading(false);
   };
 
-  const SaveOutput = async (formData: any, slug: any) => {
+  const SaveOutput = async (formData: any, slug: any, aiResponse:string) => {
     const result = await db.insert(AIOutput).values({
       formData: formData,
       templateSlug: slug,

@@ -19,7 +19,6 @@ function FormSection({ selectedTemplate, userFormInput, loading }: PROPS) {
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
     userFormInput(formData);
-    // setFormData("");
   };
 
   const handleInputChange = (e: any) => {
