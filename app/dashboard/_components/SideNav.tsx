@@ -18,7 +18,7 @@ function SideNav() {
 
   const MenuList: MENU[] = [
     {
-      title: "Dashboard",
+      title: "Home",
       icon: Home,
       path: "/dashboard",
     },

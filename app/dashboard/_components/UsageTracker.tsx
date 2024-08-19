@@ -46,7 +46,7 @@ function UsageTracker() {
 
   return (
     <div className="m-5">
-      <div className="bg-primary text-white rounded-lg p-3">
+      <div className="bg-primary text-white rounded-lg p-3 cursor-pointer">
         <h2 className="font-medium">Credits</h2>
         <div className="h-2 bg-[#9981f9] w-full mt-3 rounded-full">
           <div

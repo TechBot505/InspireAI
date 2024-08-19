@@ -2,11 +2,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckIcon } from "lucide-react";
+// import axios from "axios";
 
 function Billing() {
 
   const handleSubscribe = () => {
     // Add your subscription code here
+    // axios.post("/api/create-subscription", {}).then((res) => {
+    //   console.log(res.data);
+    // })
     console.log("Subscribed");
   };
 
