@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import SideNav from "./_components/SideNav";
 import Header from "./_components/Header";
 import { TotalUsageContextProvider } from "../(context)/TotalUsageContext";
@@ -8,14 +9,16 @@ function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [showSideBar, setShowSideBar] = useState<boolean>(false);
+
   return (
     <TotalUsageContextProvider>
-    <div className="h-full bg-slate-100">
-      <div className="lg:w-64 hidden lg:block fixed">
-        <SideNav />
+    <div className="h-screen bg-slate-100">
+      <div>
+        <SideNav showSidebar={showSideBar} setShowSidebar={setShowSideBar} />
       </div>
       <div className="lg:ml-64">
-        <Header />
+        <Header setShowSidebar={setShowSideBar} />
         {children}
       </div>
     </div>

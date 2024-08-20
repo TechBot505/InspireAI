@@ -1,6 +1,6 @@
 "use client";
 
-import { FileClock, Home, Settings, WalletCards } from "lucide-react";
+import { FileClock, Home, Settings, WalletCards, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -13,7 +13,12 @@ interface MENU {
   path: string;
 }
 
-function SideNav() {
+interface PROPS {
+  showSidebar: boolean;
+  setShowSidebar: (value: any) => void;
+}
+
+function SideNav({ showSidebar, setShowSidebar }: PROPS) {
   const path = usePathname();
 
   const MenuList: MENU[] = [
@@ -40,15 +45,26 @@ function SideNav() {
   ];
 
   return (
-    <div className="h-screen relative p-5 shadow-sm border bg-white">
-      <div className="flex justify-center gap-1 items-center">
-        <Image width={42} height={42} alt="logo" src={"/logo.png"} />
-        <span className="font-bold text-xl">Inspire AI</span>
+    <div
+      className={`${
+        showSidebar ? "ml-0" : "ml-[-340px]"
+      } lg:ml-0 w-72 lg:w-64 transition-[margin-left] ease-in-out duration-500 h-screen fixed p-5 shadow-sm border bg-white z-10`}
+    >
+      <div className="flex flex-row justify-between items-center">
+        <div className="flex justify-center gap-1 items-center">
+          <Image width={42} height={42} alt="logo" src={"/logo.png"} />
+          <span className="font-bold text-xl">Inspire AI</span>
+        </div>
+        <X
+          size={24}
+          className="lg:hidden cursor-pointer hover:text-gray-700"
+          onClick={() => setShowSidebar(false)}
+        />
       </div>
       <hr className="my-5 border" />
       <div className="mt-3">
         {MenuList.map((menu, index) => (
-          <Link key={index} href={menu.path}>
+          <Link key={index} href={menu.path} onClick={() => setShowSidebar(false)}>
             <div
               className={`flex items-center mb-3 p-3 gap-2 cursor-pointer hover:bg-primary hover:text-white rounded-lg ${
                 path === menu.path && "bg-primary text-white"

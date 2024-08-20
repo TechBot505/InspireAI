@@ -14,7 +14,9 @@ export async function POST(req, res) {
     total_count: 1,
     quantity: 1,
     addons: [],
-    notes: {},
+    notes: {
+      key: 'value'
+    },
   });
 
   return NextResponse.json(result);

@@ -2,15 +2,16 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckIcon } from "lucide-react";
-// import axios from "axios";
+import axios from "axios";
 
 function Billing() {
 
   const handleSubscribe = () => {
-    // Add your subscription code here
-    // axios.post("/api/create-subscription", {}).then((res) => {
+    // axios.post('/api/create-subscription', {}).then((res) => {
     //   console.log(res.data);
-    // })
+    // }).catch((err) => {
+    //   console.log(err);
+    // });
     console.log("Subscribed");
   };
 
@@ -26,7 +27,7 @@ function Billing() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 grid-cols-1 mx-auto gap-6 max-w-2xl max-sm:mx-auto mt-12">
+        <div className="grid sm:grid-cols-2 grid-cols-1 mx-auto gap-12 max-w-2xl max-sm:mx-auto mt-12">
           <div className="bg-white shadow rounded-3xl p-6 hover:scale-105 transition-all duration-300">
             <h4 className="text-gray-800 text-lg mb-3">Free</h4>
             <h3 className="text-4xl font-semibold ">
