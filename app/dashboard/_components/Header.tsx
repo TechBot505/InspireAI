@@ -17,7 +17,7 @@ function Header({ setShowSidebar }: PROPS) {
           }}
         />
       </div>
-      <div className="flex gap-2 hidden sm:block items-center p-2 border rounded-md max-w-lg">
+      <div className="sm:flex sm:flex-row hidden gap-2 items-center p-2 border rounded-md max-w-lg">
         <Search size={24} />
         <input
           type="text"
