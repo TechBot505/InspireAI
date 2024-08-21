@@ -17,19 +17,19 @@ export default function Home() {
         <div className="max-w-7xl w-full mx-auto flex flex-wrap items-center gap-4">
           <Link
             href="/"
-            className="flex gap-2 items-center justify-center font-bold text-xl"
+            className="flex gap-1 items-center justify-center font-bold text-lg"
           >
             <img src="/logo.png" alt="logo" className="w-12" />
             <span>Inspire AI</span>
           </Link>
-          <div className="flex gap-6 items-center ml-auto">
+          <div className="flex gap-4 items-center ml-auto">
             <ThemeToggle />
             <Link href="/dashboard">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 transition-all text-md font-semibold rounded-md px-3 py-5"
+                className="flex items-center gap-2 transition-all text-md font-semibold rounded-md px-2 py-5"
               >
-                Get started
+                SignIn
                 <ArrowRight size={24} />
               </Button>
             </Link>
