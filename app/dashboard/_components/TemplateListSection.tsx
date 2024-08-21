@@ -8,6 +8,7 @@ export interface TEMPLATE {
   icon: string;
   category: string;
   slug: string;
+  premium?: boolean;
   aiPrompt: string;
   form?: FORM[];
 }
