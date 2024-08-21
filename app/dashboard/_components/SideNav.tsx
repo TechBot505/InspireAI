@@ -77,7 +77,7 @@ function SideNav({ showSidebar, setShowSidebar }: PROPS) {
         ))}
       </div>
       <div className="absolute bottom-10 w-full left-0">
-        <UsageTracker />
+        <UsageTracker setShowSidebar={setShowSidebar} />
       </div>
     </div>
   );

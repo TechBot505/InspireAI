@@ -10,7 +10,11 @@ import { Loader2Icon } from "lucide-react";
 import { TotalUsageContext } from "../../(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
 
-function UsageTracker() {
+interface PROPS {
+  setShowSidebar: (value: boolean) => void;
+}
+
+function UsageTracker({ setShowSidebar }: PROPS) {
   const { user } = useUser();
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
   const [loading, setLoading] = useState<boolean>(true);
@@ -41,6 +45,7 @@ function UsageTracker() {
   };
 
   const clickHandler = () => {
+    setShowSidebar(false);
     router.push("/dashboard/billing");
   };
 
