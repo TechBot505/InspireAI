@@ -48,7 +48,7 @@ function SideNav({ showSidebar, setShowSidebar }: PROPS) {
     <div
       className={`${
         showSidebar ? "ml-0" : "ml-[-340px]"
-      } lg:ml-0 w-72 lg:w-64 transition-[margin-left] ease-in-out duration-500 h-screen fixed p-5 shadow-sm border bg-white z-10`}
+      } lg:ml-0 w-72 lg:w-64 transition-[margin-left] ease-in-out duration-500 h-screen fixed dark:bg-darkSecondary p-5 shadow-sm border bg-white z-10`}
     >
       <div className="flex flex-row justify-between items-center">
         <div className="flex justify-center gap-1 items-center">

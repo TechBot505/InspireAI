@@ -74,10 +74,10 @@ function CreateNewContent(props: PROPS) {
   };
 
   return (
-    <div className="flex flex-col p-5 h-full bg-slate-100">
+    <div className="flex flex-col p-5 h-full dark:bg-darkPrimary bg-slate-100">
       <div className="w-5">
         <Link href="/dashboard">
-          <Button className="flex gap-2">
+          <Button className="flex gap-2 dark:text-white">
             <ArrowLeft />
             Back
           </Button>

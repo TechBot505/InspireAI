@@ -12,7 +12,7 @@ function TemplateCard(item: TEMPLATE) {
 
   return (
     <Link href={!userSubscription && item.premium ? '/dashboard' : `/dashboard/content/${item.slug}`} key={item.slug}>
-      <div className="sm:p-5 p-4 shadow-md rounded-md border bg-white flex flex-col gap-2 cursor-pointer hover:scale-105 transition-all">
+      <div className="sm:p-5 p-4 shadow-md rounded-md border dark:bg-gray-700 bg-white flex flex-col gap-2 cursor-pointer hover:scale-105 transition-all">
         <div className="flex gap-2 items-start justify-between">
           <Image src={item.icon} alt={item.name} width={50} height={50} />
           {item.premium && (
@@ -22,7 +22,7 @@ function TemplateCard(item: TEMPLATE) {
           )}
         </div>
         <h2 className="font-medium text-lg">{item.name}</h2>
-        <p className="text-gray-500 line-clamp-3">{item.description}</p>
+        <p className="text-gray-500 dark:text-gray-300 line-clamp-3">{item.description}</p>
       </div>
     </Link>
   );

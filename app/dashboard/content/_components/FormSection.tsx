@@ -30,15 +30,15 @@ function FormSection({ selectedTemplate, userFormInput, loading }: PROPS) {
   };
 
   return (
-    <div className="p-5 shadow-md border rounded-lg bg-white">
+    <div className="p-5 shadow-md border rounded-lg dark:bg-gray-700 bg-white">
       <div className="flex flex-row items-center gap-4 mb-2">
         {/* @ts-ignore */}
         <Image src={selectedTemplate?.icon} alt="icon" width={60} height={60} />
-        <h2 className="font-bold text-2xl text-primary">
+        <h2 className="font-bold text-2xl dark:text-white text-primary">
           {selectedTemplate?.name}
         </h2>
       </div>
-      <p className="text-gray-500 text-sm">{selectedTemplate?.description}</p>
+      <p className="text-gray-500 dark:text-gray-300 text-sm">{selectedTemplate?.description}</p>
       <form className="mt-4" onSubmit={handleFormSubmit}>
         {selectedTemplate?.form?.map((item, index) => (
           <div key={index} className="my-2 flex flex-col gap-2 mb-7">
@@ -58,7 +58,7 @@ function FormSection({ selectedTemplate, userFormInput, loading }: PROPS) {
             ) : null}
           </div>
         ))}
-        <Button type="submit" className="w-full py-6 text-lg flex gap-2" disabled={loading}>
+        <Button type="submit" className="w-full dark:text-white py-6 text-lg flex gap-2" disabled={loading}>
           {loading && <Loader2Icon width={32} className="animate-spin" />}
           Generate
         </Button>

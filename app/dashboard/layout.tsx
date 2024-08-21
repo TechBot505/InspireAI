@@ -17,7 +17,7 @@ function DashboardLayout({
     <TotalUsageContextProvider>
       <UserSubscriptionContextProvider>
         <UpdateCreditUsageProvider>
-          <div className="h-screen bg-slate-100">
+          <div className="h-full dark:bg-darkPrimary bg-slate-100">
             <div>
               <SideNav
                 showSidebar={showSideBar}
