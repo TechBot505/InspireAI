@@ -9,11 +9,13 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { chatSession } from "@/utils/AiModels";
 import { db } from "@/utils/DB";
-import { AIOutput } from "@/utils/Schema";
+import { AIOutput, UserSubscription } from "@/utils/Schema";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { TotalUsageContext } from "../../../(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
+import { UserSubscriptionContext } from "../../../(context)/UserSubscriptionContext";
+import { UpdateCreditUsageContext } from "../../../(context)/UpdateCreditUsageContext";
 
 interface PROPS {
   params: {
@@ -25,6 +27,8 @@ function CreateNewContent(props: PROPS) {
   const [loading, setLoading] = useState<boolean>(false);
   const [aiResponse, setAiResponse] = useState<string>("");
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
+  const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext);
+  const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
 
   const { user } = useUser();
   const router = useRouter();
@@ -33,8 +37,13 @@ function CreateNewContent(props: PROPS) {
     (template) => template.slug === props.params["template-slug"]
   );
 
+  /**
+   * Used to generate content from AI
+   * @param formData 
+   * @returns 
+   */
   const generateAIContent = async (formData: any) => {
-    if (totalUsage >= 10000) {
+    if (totalUsage >= 10000 && !userSubscription) {
       router.push("/dashboard/billing");
       return;
     }
@@ -49,6 +58,7 @@ function CreateNewContent(props: PROPS) {
       result?.response.text()
     );
     setLoading(false);
+    setUpdateCreditUsage(Date.now());
   };
 
   const SaveOutput = async (formData: any, slug: any, aiResponse: string) => {

@@ -1,22 +1,68 @@
 "use client"
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleCheckIcon } from "lucide-react";
+import { CircleCheckIcon, Loader2Icon } from "lucide-react";
 import axios from "axios";
+import { db } from "@/utils/DB";
+import { UserSubscription } from "@/utils/Schema";
+import { useUser } from "@clerk/nextjs";
+import moment from "moment";
+import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
 
 function Billing() {
 
+  const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { user } = useUser();
+
   const handleSubscribe = () => {
-    // axios.post('/api/create-subscription', {}).then((res) => {
-    //   console.log(res.data);
-    // }).catch((err) => {
-    //   console.log(err);
-    // });
-    console.log("Subscribed");
+    setLoading(true);
+    axios.post('/api/create-subscription', {}).then((res) => {
+      console.log(res.data);
+      handlePayment(res.data.id);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+      setLoading(false);
+    });
+  };
+
+  const handlePayment = (subId: string) => {
+    const options = {
+      "key": process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+      "subscription_id": subId,
+      "name": "Inspire AI",
+      "description": "Monthly Subscription",
+      handler: async (response: any) => {
+        console.log(response);
+        if(response) {
+          handleSaveSubscription(response?.razorpay_payment_id);
+        }
+        setLoading(false);
+      }
+    }
+    // @ts-ignore
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
+  const handleSaveSubscription = async (paymentId: string) => {
+    const result = await db.insert(UserSubscription).values({
+      email: user?.primaryEmailAddress?.emailAddress,
+      userName: user?.fullName,
+      active: true,
+      paymentId: paymentId,
+      startDate: moment().format('YYYY-MM-DD')
+    })
+    console.log(result);
+    if(result) {
+      window.location.reload();
+    }
   };
 
   return (
     <div className=" bg-slate-100 px-4 py-8">
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       <div className="max-w-5xl max-lg:max-w-3xl mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-2 text-gray-800">
@@ -104,10 +150,12 @@ function Billing() {
                 </li>
               </ul>
               <Button
+                disabled={loading || userSubscription}
                 onClick={() => handleSubscribe()}
-                className="w-full mt-6 px-4 py-2 text-sm tracking-wide"
+                className="flex gap-2 items-center w-full mt-6 px-4 py-2 text-sm tracking-wide"
               >
-                Subscribe
+                {loading && <Loader2Icon className="animate-spin" />}
+                {userSubscription ? 'Active Plan' : 'Subscribe'}
               </Button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { db } from "@/utils/DB";
-import { AIOutput } from "@/utils/Schema";
+import { AIOutput, UserSubscription } from "@/utils/Schema";
 import { useUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 import React, { useContext, useEffect, useState } from "react";
@@ -9,6 +9,8 @@ import { HISTORY } from "../history/page";
 import { Loader2Icon } from "lucide-react";
 import { TotalUsageContext } from "../../(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
+import { UserSubscriptionContext } from "../../(context)/UserSubscriptionContext";
+import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsageContext";
 
 interface PROPS {
   setShowSidebar: (value: boolean) => void;
@@ -17,12 +19,22 @@ interface PROPS {
 function UsageTracker({ setShowSidebar }: PROPS) {
   const { user } = useUser();
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
+  const { userSubscription, setUserSubscription } = useContext(
+    UserSubscriptionContext
+  );
+  const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
   const [loading, setLoading] = useState<boolean>(true);
+  const [maxWords, setMaxWords] = useState<number>(10000);
   const router = useRouter();
 
   useEffect(() => {
     user && getUserUsageData();
-  }, [user, totalUsage]);
+    user && getUserSubscription();
+  }, [user]);
+
+  useEffect(() => {
+    user && getUserUsageData();
+  }, [updateCreditUsage && user]);
 
   const getUserUsageData = async () => {
     setLoading(true);
@@ -34,6 +46,20 @@ function UsageTracker({ setShowSidebar }: PROPS) {
       .where(eq(AIOutput.createdBy, user?.primaryEmailAddress?.emailAddress));
     getTotalUsage(result);
     setLoading(false);
+  };
+
+  const getUserSubscription = async () => {
+    const result = await db
+      .select()
+      .from(UserSubscription)
+      .where(
+        // @ts-ignore
+        eq(UserSubscription.email, user?.primaryEmailAddress?.emailAddress)
+      );
+    if (result) {
+      setUserSubscription(true);
+      setMaxWords(100000);
+    }
   };
 
   const getTotalUsage = (result: HISTORY[]) => {
@@ -57,7 +83,7 @@ function UsageTracker({ setShowSidebar }: PROPS) {
           <div
             className="h-2 bg-white rounded-full"
             style={{
-              width: `${(totalUsage / 10000) * 100}%`,
+              width: `${(totalUsage / maxWords) * 100}%`,
             }}
           ></div>
         </div>
@@ -67,7 +93,7 @@ function UsageTracker({ setShowSidebar }: PROPS) {
           ) : (
             totalUsage
           )}
-          /10,000 credit used
+          /{maxWords} credit used
         </h2>
       </div>
       <Button
