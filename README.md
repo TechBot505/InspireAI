@@ -77,38 +77,35 @@ Inspire AI is built using a modern and robust tech stack:
 ## Installation
 To set up Inspire AI locally, follow these steps:
 
-1. **Clone the Repository**
-   
-   ```bash
-   git clone https://github.com/yourusername/inspire-ai.git
-   ```
-   
-2. **Navigate to the Project Directory**
-   
-   ```bash
-   cd inspire-ai
-   ```
-
-3.** Install Dependencies**
+1.** Install Dependencies**
 
    ```bash
    npm install
    ```
 
-4. **Environment Variables**
+2. **Environment Variables**
    * Create a `.env.local` file in the root directory.
-   * Fill in the required environment variables as outlined in `.env.local.example`.
+   * Fill in the required environment variables as outlined in `.env.example
+     
+3. **API KEYS**
+   * Fill in all the API keys from respoective sources.
+   * Navigate to [Gemini studio](https://aistudio.google.com/prompts/new_chat) to create your Google Gemini API KEY.
+   * Navigate to [Neon DB](https://console.neon.tech), create an account, select a drizzle project and get your connection url.
+   * Navigate to [Clerk](clerk.com), create a new project and get the API key and Secret.
+   * To get the Razorpay API keys and Secrets, you'll have to register for a test account which might take 2-3 days. **However, even without the Razorpay API keys and secrets, the cresit system will work in the free tier. Only the user cannot subscribe to the premium tier.**
   
-5. **Run the Development Server**
 
-   ```bash
-   npm run dev
-   ```
-
-6. **Run the Drizzle Orm Local Databse**
+4. **Run the Drizzle Orm Local Databse**
+   Before running the project, make sure to use this command in a new terminal in order to sync the schema with the neon db schema in the database.
 
    ```bash
    npm run db:studio
+   ```
+  
+6. **Run the Development Server**
+
+   ```bash
+   npm run dev
    ```
 
 ## Usage
